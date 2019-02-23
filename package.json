@@ -1,9 +1,11 @@
 {
   "name": "dnslink-cloudflare",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Update dnslink TXT records in Cloudflare",
   "main": "./lib/index.js",
-  "bin": "./bin/index.js",
+  "bin": {
+    "dnslink-cloudflare": "./bin/index.js"
+  },
   "author": "Protocol Labs, Inc.",
   "contributors": [
     "Henrique Dias <hacdias@gmail.com>"

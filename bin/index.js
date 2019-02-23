@@ -23,10 +23,21 @@ yargs.command('$0 zone path', 'Updates the dnslink for a Cloudflare configuratio
       return
     }
 
-    const record = argv.record === '@' ? argv.zone : argv.record
+    const api = {
+      key,
+      email
+    }
+
+    const opts = {
+      record: argv.record === '@' ? argv.zone : argv.record,
+      zone: argv.zone,
+      path: argv.path
+    }
 
     try {
-      await update({ key, email }, argv.zone, argv.path, record)
+      const content = await update(api, opts)
+      const record = opts.record === opts.zone ? '@' : opts.record
+      console.log(`Updated TXT ${record}.${argv.zone} to ${content}`)
     } catch (err) {
       console.log(err)
       process.exit(1)

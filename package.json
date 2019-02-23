@@ -1,0 +1,13 @@
+{
+  "name": "dnslink-cloudflare",
+  "version": "1.0.0",
+  "description": "Update dnslink TXT records in Cloudflare",
+  "main": "./lib/index.js",
+  "bin": "./bin/index.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cloudflare": "^2.4.1",
+    "yargs": "^13.2.1"
+  }
+}

@@ -4,8 +4,15 @@
   "description": "Update dnslink TXT records in Cloudflare",
   "main": "./lib/index.js",
   "bin": "./bin/index.js",
-  "author": "",
+  "author": "Protocol Labs, Inc.",
+  "contributors": [
+    "Henrique Dias <hacdias@gmail.com>"
+  ],
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/ipfs-shipyard/dnslink-cloudflare"
+  },
   "dependencies": {
     "cloudflare": "^2.4.1",
     "yargs": "^13.2.1"

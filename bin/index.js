@@ -3,47 +3,56 @@
 const yargs = require('yargs')
 const update = require('../lib')
 
-yargs.command('$0 zone path', 'Updates the dnslink for a Cloudflare configuration. CF_API_KEY and CF_API_EMAIL environment variables must be set.', yargs => {
-    yargs.positional('zone', {
-      describe: 'Name of the zone to update',
-      type: 'string'
-    }).positional('path', {
-      describe: 'IPFS path',
-      type: 'string'
-    }).option('record', {
-      alias: 'r',
-      describe: 'Name of the record to update',
-      type: 'string',
-      default: '@'
-    }).require(['zone', 'path'])
-  }, async argv => {
-    const key = process.env.CF_API_KEY
-    const email = process.env.CF_API_EMAIL
-
-    if (!key|| !email) {
-      yargs.showHelp()
-      return
-    }
-
-    const api = {
-      key,
-      email
-    }
-
-    const opts = {
-      record: argv.record === '@' ? argv.zone : argv.record,
-      zone: argv.zone,
-      path: argv.path
-    }
-
-    try {
-      const content = await update(api, opts)
-      const record = opts.record === opts.zone ? '@' : opts.record
-      console.log(`Updated TXT ${record}.${argv.zone} to ${content}`)
-    } catch (err) {
-      console.log(err)
-      process.exit(1)
-    }
+const argv = yargs
+  .usage('$0', 'Updates the dnslink for a Cloudflare configuration. CF_API_KEY and CF_API_EMAIL environment variables must be set.')
+  .scriptName('dnslink-cloudflare')
+  .option('domain', {
+    alias: 'd',
+    describe: 'Cloudflare domain name',
+    type: 'string',
+    demandOption: true
+  }).option('link', {
+    alias: 'l',
+    describe: 'dnslink value, eg. ipfs path',
+    type: 'string',
+    demandOption: true
+  }).option('record', {
+    alias: 'r',
+    describe: 'Domain record name',
+    type: 'string',
+    default: '@'
   })
   .help()
   .argv
+
+async function run () {
+  const key = process.env.CF_API_KEY
+  const email = process.env.CF_API_EMAIL
+
+  if (!key || !email) {
+    yargs.showHelp()
+    return
+  }
+
+  const api = {
+    key,
+    email
+  }
+
+  const opts = {
+    record: argv.record === '@' ? argv.domain : argv.record,
+    zone: argv.domain,
+    link: argv.link
+  }
+
+  try {
+    const content = await update(api, opts)
+    const record = opts.record === opts.zone ? '@' : opts.record
+    console.log(`Updated TXT ${record}.${opts.zone} to ${content}`)
+  } catch (err) {
+    console.log(err)
+    process.exit(1)
+  }
+}
+
+run()

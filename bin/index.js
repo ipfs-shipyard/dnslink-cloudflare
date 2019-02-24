@@ -47,8 +47,7 @@ async function run () {
 
   try {
     const content = await update(api, opts)
-    const record = opts.record === opts.zone ? '@' : opts.record
-    console.log(`Updated TXT ${record}.${opts.zone} to ${content}`)
+    console.log(`Updated TXT ${opts.record} to ${content}`)
   } catch (err) {
     console.log(err)
     process.exit(1)

@@ -40,7 +40,7 @@ async function run () {
   }
 
   const opts = {
-    record: argv.record === '@' ? argv.domain : argv.record,
+    record: argv.record === '@' ? argv.domain : `${argv.record}.${argv.domain}`,
     zone: argv.domain,
     link: argv.link
   }

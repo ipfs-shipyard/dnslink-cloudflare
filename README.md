@@ -8,7 +8,7 @@
 ## Usage
 
 ```
-npx dnslink-cloudflare zone path [-r record]
+npx dnslink-cloudflare -d <domain> -l <link> [-r record]
 ```
 
 ## Contributing

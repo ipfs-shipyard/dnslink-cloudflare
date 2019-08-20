@@ -23,6 +23,6 @@
     "yargs": "^13.2.4"
   },
   "devDependencies": {
-    "standard": "^13.0.2"
+    "standard": "^14.0.0"
   }
 }

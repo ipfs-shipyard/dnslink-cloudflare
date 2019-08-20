@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "cloudflare": "^2.4.1",
-    "yargs": "^13.2.4"
+    "yargs": "^14.0.0"
   },
   "devDependencies": {
     "standard": "^13.0.2"

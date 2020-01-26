@@ -19,6 +19,7 @@
     "url": "https://github.com/ipfs-shipyard/dnslink-cloudflare"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "cloudflare": "^2.7.0",
     "yargs": "^15.0.1"
   },

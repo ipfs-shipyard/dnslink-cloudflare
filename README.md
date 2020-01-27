@@ -7,9 +7,17 @@
 
 ## Usage
 
-```
+```sh
 npx dnslink-cloudflare -d <domain> -l <link> [-r record]
 ```
+
+Required environment variables
+
+- `CF_API_KEY` CloudFlare API key
+- `CF_API_EMAIL` CloudFlare API email
+- `CF_API_TOKEN` CloudFlare API token
+
+These values are obtained from in the CloudFlare account. https://dash.cloudflare.com/profile/api-tokens
 
 ## Contributing
 

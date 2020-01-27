@@ -4,7 +4,7 @@ const yargs = require('yargs')
 const update = require('../lib')
 
 const argv = yargs
-  .usage('$0', 'Updates the dnslink for a Cloudflare configuration. CF_API_KEY and CF_API_EMAIL environment variables must be set.')
+  .usage('$0', 'Updates the dnslink for a Cloudflare configuration. Both the CF_API_KEY and CF_API_EMAIL environment variables or the CF_API_TOKEN environment variable must be set.')
   .scriptName('dnslink-cloudflare')
   .option('domain', {
     alias: 'd',
@@ -28,15 +28,17 @@ const argv = yargs
 async function run () {
   const key = process.env.CF_API_KEY
   const email = process.env.CF_API_EMAIL
+  const token = process.env.CF_API_TOKEN
 
-  if (!key || !email) {
+  if ((!key || !email) && !token) {
     yargs.showHelp()
     return
   }
 
   const api = {
     key,
-    email
+    email,
+    token
   }
 
   const opts = {

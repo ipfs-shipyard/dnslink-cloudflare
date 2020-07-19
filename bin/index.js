@@ -1,29 +1,38 @@
 #!/usr/bin/env node
 
-const yargs = require('yargs')
+const meow = require('meow')
 const update = require('../lib')
 
-const argv = yargs
-  .usage('$0', 'Updates the dnslink for a Cloudflare configuration. Both the CF_API_KEY and CF_API_EMAIL environment variables or the CF_API_TOKEN environment variable must be set.')
-  .scriptName('dnslink-cloudflare')
-  .option('domain', {
-    alias: 'd',
-    describe: 'Cloudflare domain name',
-    type: 'string',
-    demandOption: true
-  }).option('link', {
-    alias: 'l',
-    describe: 'dnslink value, eg. ipfs path',
-    type: 'string',
-    demandOption: true
-  }).option('record', {
-    alias: 'r',
-    describe: 'Domain record name',
-    type: 'string',
-    default: '@'
-  })
-  .help()
-  .argv
+const cli = meow(`
+    Updates the dnslink for a Cloudflare configuration. Both the CF_API_KEY and CF_API_EMAIL environment
+    variables or the CF_API_TOKEN environment variable must be set.
+  
+    Usage
+      $ dnslink-cloudflare -d <domain> -l <link> [-r record]
+ 
+    Options
+      --domain, -d      Cloudflare domain name
+      --link, -k        dnslink value, eg. ipfs path
+      --record, -r      Domain record name
+`, {
+  flags: {
+    domain: {
+      type: 'string',
+      alias: 'd',
+      isRequired: true
+    },
+    link: {
+      type: 'string',
+      alias: 'l',
+      isRequired: true
+    },
+    record: {
+      alias: 'r',
+      type: 'string',
+      default: '@'
+    }
+  }
+})
 
 async function run () {
   const key = process.env.CF_API_KEY
@@ -31,7 +40,7 @@ async function run () {
   const token = process.env.CF_API_TOKEN
 
   if ((!key || !email) && !token) {
-    yargs.showHelp()
+    cli.showHelp()
     return
   }
 
@@ -42,9 +51,9 @@ async function run () {
   }
 
   const opts = {
-    record: argv.record === '@' ? argv.domain : `${argv.record}.${argv.domain}`,
-    zone: argv.domain,
-    link: argv.link
+    record: cli.flags.record === '@' ? cli.flags.domain : `${cli.flags.record}.${cli.flags.domain}`,
+    zone: cli.flags.domain,
+    link: cli.flags.link
   }
 
   try {

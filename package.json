@@ -19,10 +19,10 @@
     "url": "https://github.com/ipfs-shipyard/dnslink-cloudflare"
   },
   "dependencies": {
-    "got": "^11.5.1",
-    "meow": "^7.0.1"
+    "got": "^11.8.2",
+    "meow": "^10.0.0"
   },
   "devDependencies": {
-    "standard": "^14.3.4"
+    "standard": "^16.0.3"
   }
 }

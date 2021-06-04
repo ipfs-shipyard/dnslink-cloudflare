@@ -18,7 +18,7 @@ It can be done two ways. The first is with email and API key.
 - `CF_API_KEY` CloudFlare API key
 - `CF_API_EMAIL` CloudFlare API email
 
-The second is with just the API token.
+The second is with just the API token (permissions: `zone:read` for all zones and `dns:edit` for specific zone):
 
 `CF_API_TOKEN` CloudFlare API token
 

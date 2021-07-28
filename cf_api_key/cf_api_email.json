@@ -1,0 +1,23 @@
+# CF_API_KEY CloudFlare API key
+# CF_API_EMAIL CloudFlare API email
+# The second is with just the API token (permissions: zone:read for all zones and dns:edit for specific zone):
+#
+# CF_API_TOKEN CloudFlare API token
+#
+# These values are obtained from in the CloudFlare account. 'https://dash.cloudflare.com/profile/api-tokens'
+#
+# Contributing
+# PRs accepted. 
+# ```mbg198618@gmail.com```
+# zone-id-api 
+# ```4bb8ea39a9292cd4fcb3047bc43756d9```
+# global-token-api
+# ```1770d0fad3c37ceacea5647134724fb4c7339```
+#
+# accnt-id-api
+# ```41836f0c53e4d3c3907218f3fb370ad2```
+# origin-ca-id-token-api
+# ```v1.0-8275bcb4241dc3ac07082fef- 72468351566de4fef756536ebce0b7f800d4e73c95a1bdea15fa39e13f0f6206d0a49e467a71356db04ef70f0cb8a2cf45c87fd76cef1347e4f448ef84aafecbe4ac40c8e8453cb3```
+
+# License
+MIT © Protocol Labs
